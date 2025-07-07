@@ -1,4 +1,4 @@
-# Adapted Version for OMT(NRA) Solving
+# CDCL(OCAC)
 
 This is an adapted version of [*CVC5*](https://github.com/cvc5/cvc5) tailored for solving **OMT over Nonlinear Real Arithmetic (OMT(NRA))** problems. Below is a quick guide to compiling and running the solver.
 
