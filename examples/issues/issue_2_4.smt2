@@ -1,0 +1,8 @@
+(set-logic OMT_QF_NRA)
+(declare-fun yh () Real)
+(declare-fun yw () Real)
+(assert (and (<= yh 5) (<= 4 yh)))
+(assert (and (<= yw 2) (<= 1 yw)))
+(maximize (* yh yw))
+(check-sat)
+(get-objectives)
