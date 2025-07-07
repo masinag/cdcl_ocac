@@ -1,3 +1,65 @@
+# Adapted Version for OMT(NRA) Solving
+
+This is an adapted version of [*CVC5*](https://github.com/cvc5/cvc5) tailored for solving **OMT over Nonlinear Real Arithmetic (OMT(NRA))** problems. Below is a quick guide to compiling and running the solver.
+
+## 🛠️ Compile
+
+Use the following command to configure and build:
+
+```bash
+./configure.sh --auto-download --poly --cocoa
+cd build/
+make -j12
+```
+
+## ▶️ Run
+
+Execute the solver with your SMT-LIB2 input file:
+
+```bash
+./build/cvc5 your_input.smt2
+```
+
+## 📄 Example
+
+```smt2
+(set-logic OMT_QF_NRA)
+
+(declare-fun x () Real)
+(declare-fun y () Real)
+
+(assert (and 
+  (>= x 0)
+  (>= y 0)
+  (<= x 10)
+  (<= y 10)
+  (>= (- (* x x) y) 1)
+))
+
+(minimize (+ (* x x) (* y y)))
+
+(check-sat)
+(get-objectives)
+(get-model)
+```
+
+## ⚠️ Important Note
+
+Be sure to include the following logic tag at the beginning of your `.smt2` file:
+
+```smt2
+(set-logic OMT_QF_NRA)
+```
+
+Otherwise, the solver may crash with:
+
+```
+Segmentation fault (core dumped)
+```
+
+
+
+===============================================================================
 [![License: BSD](
     https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](
         https://opensource.org/licenses/BSD-3-Clause)
