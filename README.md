@@ -17,7 +17,7 @@ make -j12
 Execute the solver with your SMT-LIB2 input file:
 
 ```bash
-./build/cvc5 your_input.smt2
+./build/bin/cvc5 your_input.smt2
 ```
 
 ## 📄 Example
