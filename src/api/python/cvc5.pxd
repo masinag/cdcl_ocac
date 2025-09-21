@@ -301,6 +301,9 @@ cdef extern from "api/cpp/cvc5.h" namespace "cvc5":
         Term mkVar(Sort sort) except +
         Term simplify(const Term& t) except +
         void assertFormula(Term term) except +
+        void maximizeFormula(const Term& term) except +;
+        void minimizeFormula(const Term& term) except +;
+        string getObjectives() except +;
         Result checkSat() except +
         Result checkSatAssuming(const vector[Term]& assumptions) except +
         Sort declareDatatype(const string& symbol, const vector[DatatypeConstructorDecl]& ctors)

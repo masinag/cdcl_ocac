@@ -1733,6 +1733,48 @@ cdef class Solver:
         """
         self.csolver.assertFormula(term.cterm)
 
+    def maximizeFormula(self, Term term):
+        """
+            Maximize a formula.
+
+            SMT-LIB:
+
+            .. code-block:: smtlib
+
+                ( maximize <term> )
+
+            :param term: The formula to maximize.
+        """
+        self.csolver.maximizeFormula(term.cterm)
+
+    def minimizeFormula(self, Term term):
+        """
+            Minimize a formula.
+
+            SMT-LIB:
+
+            .. code-block:: smtlib
+
+                ( minimize <term> )
+
+            :param term: The formula to minimize.
+        """
+        self.csolver.minimizeFormula(term.cterm)
+
+    def getObjectives(self):
+        """
+            Get the objectives' status.
+
+            SMT-LIB:
+
+            .. code-block:: smtlib
+
+                ( get-objectives <term> )
+
+            :return: A string representation of objectives' status.
+        """
+        return self.csolver.getObjectives()
+
     def checkSat(self):
         """
             Check satisfiability.
