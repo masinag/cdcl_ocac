@@ -203,6 +203,23 @@ cdef extern from "api/cpp/cvc5.h" namespace "cvc5":
         bint isUnknown() except +
         string toString() except +
 
+    cdef cppclass OptimizationObjective:
+        OptimizationObjective() except +;
+        Term getTarget() except +
+        bint bvIsSigned() except +;
+        bint isMinimize() except +;
+        bint isMaximize() except +;
+
+    cdef cppclass OptimizationResult:
+        OptimizationResult() except +;
+        Result getResult() except +;
+        Term getValue() except +;
+        bint isPosInfinity() except +;
+        bint isNegInfinity() except +;
+        bint isPosApprox() except +;
+        bint isNegApprox() except +;
+        bint isFinite() except +;
+
     cdef cppclass Solver:
         Solver() except +
         Sort getBooleanSort() except +
@@ -304,6 +321,7 @@ cdef extern from "api/cpp/cvc5.h" namespace "cvc5":
         void maximizeFormula(const Term& term) except +;
         void minimizeFormula(const Term& term) except +;
         string getObjectives() except +;
+        vector[pair[OptimizationObjective, OptimizationResult]] getObjectiveResults() except +;
         Result checkSat() except +
         Result checkSatAssuming(const vector[Term]& assumptions) except +
         Sort declareDatatype(const string& symbol, const vector[DatatypeConstructorDecl]& ctors)
